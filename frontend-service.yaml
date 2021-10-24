@@ -7,9 +7,9 @@ metadata:
   name: frontend
 spec:
   ports:
-    - name: "8081"
-      port: 8081
-      targetPort: 8081
+    - name: "http"
+      port: 80
+      targetPort: 80
   selector:
     io.ian.service: frontend
 status:

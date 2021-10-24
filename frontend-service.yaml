@@ -1,16 +1,12 @@
 apiVersion: v1
 kind: Service
 metadata:
-  creationTimestamp: null
-  labels:
-    io.ian.service: frontend
   name: frontend
+  namespace: default
 spec:
   ports:
-    - name: "http"
+    - name: http
       port: 80
-      targetPort: 80
+      targetPort: 8000
   selector:
-    io.ian.service: frontend
-status:
-  loadBalancer: {}
+    app: frontend

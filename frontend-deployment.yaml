@@ -19,7 +19,7 @@ spec:
         io.ian.service: frontend
     spec:
       containers:
-        - image: happyostrich/matchhere_frontend
+        - image: happyostrich/matchhere_frontend:latest
           name: frontend
           ports:
             - containerPort: 80

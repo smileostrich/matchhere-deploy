@@ -21,16 +21,18 @@ spec:
       - image: happyostrich/matchhere_mysql
         name: mysql
         env:
-        - name: MYSQL_ROOT_PASSWORD 
-          valueFrom:
-            secretKeyRef:
-              name: mysql-root-pass
-              key: password
-        - name: MYSQL_DATABASE
-          valueFrom:
-            secretKeyRef:
-              name: mysql-db-url
-              key: database
+          - name: MYSQL_ROOT_PASSWORD 
+            valueFrom:
+              secretKeyRef:
+                name: mysql-root-pass
+                key: password
+          - name: MYSQL_DATABASE
+            valueFrom:
+              secretKeyRef:
+                name: mysql-db-url
+                key: database
+          - name: MYSQL_INITDB_SKIP_TZINFO
+            value: "yes"
         ports:
         - containerPort: 3306
           name: mysql

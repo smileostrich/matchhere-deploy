@@ -3,24 +3,7 @@ kind: ConfigMap
 metadata:
   name: mysql-initdb-config
 data:
-  initdb.sql: |
-    SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
-    SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
-    SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
-
-    -- -----------------------------------------------------
-    -- Schema mydb
-    -- -----------------------------------------------------
-    -- -----------------------------------------------------
-    -- Schema matching
-    -- -----------------------------------------------------
-    -- edited by ilminmoon
-
-    -- -----------------------------------------------------
-    -- Schema matching
-    --
-    -- edited by ilminmoon
-    -- -----------------------------------------------------
+  init.sql: |
     CREATE SCHEMA IF NOT EXISTS `matching` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci ;
     USE `matching` ;
 

@@ -1,9 +1,8 @@
 apiVersion: v1
 kind: Service
 metadata:
-  labels:
-    app: spring
   name: spring
+  namespace: default
 spec:
   ports:
     - name: spring-svc-8080

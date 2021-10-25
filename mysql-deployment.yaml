@@ -8,14 +8,12 @@ spec:
   selector:
     matchLabels:
       app: matchhere
-      tier: mysql
   strategy:
     type: Recreate
   template:
     metadata:
       labels:
         app: matchhere
-        tier: mysql
     spec:
       containers:
       - image: happyostrich/matchhere_mysql

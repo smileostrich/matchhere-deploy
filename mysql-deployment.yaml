@@ -30,7 +30,7 @@ spec:
                 name: mysql-db-url
                 key: database
           - name: MYSQL_INITDB_SKIP_TZINFO
-            value: "yes"
+            value: "no"
         ports:
         - containerPort: 3306
           name: mysql

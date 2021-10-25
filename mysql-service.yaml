@@ -1,16 +1,13 @@
 apiVersion: v1
 kind: Service
 metadata:
-  creationTimestamp: null
+  name: matchhere-mysql
   labels:
-    io.ian.service: mysql
-  name: mysql
+    app: matchhere
 spec:
   ports:
-    - name: "3306"
-      port: 3306
-      targetPort: 3306
+    - port: 3306
   selector:
-    io.ian.service: mysql
-status:
-  loadBalancer: {}
+    app: matchhere
+    tier: mysql
+  clusterIP: None

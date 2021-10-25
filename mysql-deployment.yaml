@@ -3,17 +3,17 @@ kind: Deployment
 metadata:
   name: matchhere-mysql
   labels:
-    app: matchhere
+    app: matchhere-mysql
 spec:
   selector:
     matchLabels:
-      app: matchhere
+      app: matchhere-mysql
   strategy:
     type: Recreate
   template:
     metadata:
       labels:
-        app: matchhere
+        app: matchhere-mysql
     spec:
       containers:
       - image: happyostrich/matchhere_mysql

@@ -3,10 +3,10 @@ kind: Service
 metadata:
   name: matchhere-mysql
   labels:
-    app: matchhere
+    app: matchhere-mysql
 spec:
   ports:
     - port: 3306
   selector:
-    app: matchhere
+    app: matchhere-mysql
   clusterIP: None

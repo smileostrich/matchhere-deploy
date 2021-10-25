@@ -18,11 +18,11 @@ spec:
         - image: happyostrich/matchhere_frontend:latest
           name: frontend
           ports:
-            - containerPort: 8000
+            - containerPort: 80
           livenessProbe:
             httpGet:
               path: /
-              port: 8000
+              port: 80
             initialDelaySeconds: 300
             periodSeconds: 30
 

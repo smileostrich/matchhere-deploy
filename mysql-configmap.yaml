@@ -6,10 +6,6 @@ data:
   init.sql: |
     CREATE SCHEMA IF NOT EXISTS `matching` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci ;
     USE `matching` ;
-
-    -- -----------------------------------------------------
-    -- Table `matching`.`files`
-    -- -----------------------------------------------------
     CREATE TABLE IF NOT EXISTS `matching`.`files` (
       `id` VARCHAR(255) NOT NULL,
       `data` LONGBLOB NULL DEFAULT NULL,
@@ -18,11 +14,6 @@ data:
       `download_uri` VARCHAR(255) NULL,
       PRIMARY KEY (`id`))
     ENGINE = InnoDB;
-
-
-    -- -----------------------------------------------------
-    -- Table `matching`.`member`
-    -- -----------------------------------------------------
     CREATE TABLE IF NOT EXISTS `matching`.`member` (
       `id` BIGINT NOT NULL AUTO_INCREMENT,
       `authority` VARCHAR(20) NOT NULL,
@@ -52,11 +43,6 @@ data:
         ON DELETE NO ACTION
         ON UPDATE NO ACTION)
     ENGINE = InnoDB;
-
-
-    -- -----------------------------------------------------
-    -- Table `matching`.`club`
-    -- -----------------------------------------------------
     CREATE TABLE IF NOT EXISTS `matching`.`club` (
       `id` BIGINT NOT NULL AUTO_INCREMENT,
       `bio` VARCHAR(1000) NULL DEFAULT NULL,
@@ -80,11 +66,6 @@ data:
         FOREIGN KEY (`host_id`)
         REFERENCES `matching`.`member` (`id`))
     ENGINE = InnoDB;
-
-
-    -- -----------------------------------------------------
-    -- Table `matching`.`club_board`
-    -- -----------------------------------------------------
     CREATE TABLE IF NOT EXISTS `matching`.`club_board` (
       `id` INT NOT NULL AUTO_INCREMENT,
       `club_id` BIGINT NOT NULL,

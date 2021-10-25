@@ -1,21 +1,21 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: matching-spring
+  name: matchhere-spring
   labels:
-    app: matching-spring
+    app: matchhere-spring
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: matching-spring
+      app: matchhere-spring
   template:
     metadata:
       labels:
-        app: matching-spring
+        app: matchhere-spring
     spec:
       containers:
-      - name: matching-spring
+      - name: matchhere-spring
         image: happyostrich/matchhere_spring:latest
         # imagePullPolicy: IfNotPresent
         ports:

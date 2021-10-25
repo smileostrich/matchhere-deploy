@@ -29,8 +29,8 @@ spec:
               secretKeyRef:
                 name: mysql-db-url
                 key: database
-          - name: MYSQL_INITDB_SKIP_TZINFO
-            value: "no"
+          # - name: MYSQL_INITDB_SKIP_TZINFO
+          #   value: "no"
         ports:
         - containerPort: 3306
           name: mysql

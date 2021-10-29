@@ -8,13 +8,13 @@ spec:
   ports:
   - name: client
     port: 2181
-    protocol: TCP
+    # protocol: TCP
   - name: follower
     port: 2888
-    protocol: TCP
+    # protocol: TCP
   - name: leader
     port: 3888
-    protocol: TCP
+    # protocol: TCP
   selector:
     app: zookeeper
 ---
@@ -28,8 +28,8 @@ spec:
   ports:
   - port: 9092
     name: kafka-port
-    protocol: TCP
+    # protocol: TCP
   selector:
     app: kafka
     id: "1"
-  type: LoadBalancer
+  # type: LoadBalancer

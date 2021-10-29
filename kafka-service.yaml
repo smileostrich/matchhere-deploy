@@ -1,3 +1,38 @@
+# apiVersion: v1
+# kind: Service
+# metadata:
+#   name: zookeeper
+#   labels:
+#     app: zookeeper
+# spec:
+#   ports:
+#   - name: client
+#     port: 2181
+#     # protocol: TCP
+#   - name: follower
+#     port: 2888
+#     # protocol: TCP
+#   - name: leader
+#     port: 3888
+#     # protocol: TCP
+#   selector:
+#     app: zookeeper
+# ---
+# apiVersion: v1
+# kind: Service
+# metadata:
+#   name: kafka-service
+#   labels:
+#     name: kafka
+# spec:
+#   ports:
+#   - port: 9092
+#     name: kafka-port
+#     # protocol: TCP
+#   selector:
+#     app: kafka
+#     id: "1"
+#   # type: LoadBalancer
 apiVersion: v1
 kind: Service
 metadata:
@@ -6,30 +41,56 @@ metadata:
     app: zookeeper
 spec:
   ports:
-  - name: client
-    port: 2181
-    # protocol: TCP
-  - name: follower
-    port: 2888
-    # protocol: TCP
-  - name: leader
-    port: 3888
-    # protocol: TCP
+    - port: 2181
+      name: zookeeper
+      targetPort: 2181
+      protocol: TCP
   selector:
     app: zookeeper
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: kafka-service
+  name: zookeeper
   labels:
-    name: kafka
+    app: zookeeper
+spec:
+  type: NodePort
+  ports:
+    - name: server
+      port: 2181
+      targetPort: 2181
+      protocol: TCP
+  selector:
+    app: zookeeper
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: kafka
+  labels:
+    app: kafka
 spec:
   ports:
-  - port: 9092
-    name: kafka-port
-    # protocol: TCP
+    - port: 9092
+      name: kafka
+      targetPort: 9092
+      protocol: TCP
   selector:
     app: kafka
-    id: "1"
-  # type: LoadBalancer
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: kafka-client
+  labels:
+    app: kafka
+spec:
+  type: NodePort
+  ports:
+    - port: 9092
+      name: server
+      targetPort: 9092
+      protocol: TCP
+  selector:
+    app: kafka

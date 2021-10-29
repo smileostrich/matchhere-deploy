@@ -1,23 +1,12 @@
-# apiVersion: v1
-# kind: Service
-# metadata:
-#   name: matchhere-mysql
-#   labels:
-#     app: matchhere-mysql
-# spec:
-#   ports:
-#     - port: 3306
-#   selector:
-#     app: matchhere-mysql
-#   clusterIP: None
 apiVersion: v1
 kind: Service
 metadata:
   name: matchhere-mysql
+  labels:
+    app: matchhere-mysql
 spec:
-  type: LoadBalancer
   ports:
     - port: 3306
-      targetPort: 3306
   selector:
     app: matchhere-mysql
+  clusterIP: None

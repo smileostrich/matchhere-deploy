@@ -1,23 +1,20 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: matchhere-mysql
-  labels:
-    app: matchhere-mysql
+  name: mysql
 spec:
-  selector:
-    matchLabels:
-      app: matchhere-mysql
+  replicas: 1
   strategy:
     type: Recreate
   template:
     metadata:
       labels:
-        app: matchhere-mysql
+        app: mysql
     spec:
       containers:
       - image: happyostrich/matchhere_mysql
-        name: matchhere-mysql
+        imagePullPolicy: IfNotPresent
+        name: mysql
         env:
           - name: MYSQL_ROOT_PASSWORD 
             valueFrom:
@@ -29,8 +26,6 @@ spec:
               secretKeyRef:
                 name: mysql-db-url
                 key: database
-          # - name: MYSQL_INITDB_SKIP_TZINFO
-          #   value: 1
         ports:
         - containerPort: 3306
           name: matchhere-mysql

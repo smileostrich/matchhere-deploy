@@ -5,8 +5,10 @@ metadata:
   labels:
     app: matchhere-mysql
 spec:
+  type: ExternalName
+  externalName: host.docker.internal
   ports:
     - port: 3306
   selector:
     app: matchhere-mysql
-  clusterIP: None
+  # clusterIP: None

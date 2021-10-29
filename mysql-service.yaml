@@ -5,10 +5,22 @@ metadata:
   labels:
     app: matchhere-mysql
 spec:
-  type: ExternalName
-  externalName: host.docker.internal
   ports:
     - port: 3306
   selector:
     app: matchhere-mysql
-  # clusterIP: None
+  clusterIP: None
+
+#   apiVersion: v1
+# kind: Service
+# metadata:
+#   name: matchhere-mysql
+#   labels:
+#     app: matchhere-mysql
+# spec:
+#   type: ExternalName
+#   externalName: host.docker.internal
+#   ports:
+#     - port: 3306
+#   selector:
+#     app: matchhere-mysql

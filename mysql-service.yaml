@@ -9,4 +9,4 @@ spec:
     - port: 3306
   selector:
     app: matchhere-mysql
-  clusterIP: None
+  # clusterIP: None

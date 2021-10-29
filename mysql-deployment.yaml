@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - image: happyostrich/matchhere_mysql
-        name: mysql
+        name: matchhere-mysql
         env:
           - name: MYSQL_ROOT_PASSWORD 
             valueFrom:
@@ -33,7 +33,7 @@ spec:
           #   value: 1
         ports:
         - containerPort: 3306
-          name: mysql
+          name: matchhere-mysql
         volumeMounts:
         # - name: mysql-init-config
         #   mountPath: /docker-entrypoint-initdb.d/

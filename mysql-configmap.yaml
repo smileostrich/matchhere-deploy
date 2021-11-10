@@ -51,6 +51,7 @@ data:
       `email` VARCHAR(255) NOT NULL,
       `is_active` BIT(1) NOT NULL,
       `is_agree` BIT(1) NOT NULL,
+      `is_pagree` BIT(1) NOT NULL,
       `name` VARCHAR(8) NOT NULL,
       `nickname` VARCHAR(10) NOT NULL,
       `password` VARCHAR(255) NOT NULL,
@@ -940,6 +941,89 @@ data:
       CONSTRAINT `fk_club_topic_club1`
         FOREIGN KEY (`club_id`)
         REFERENCES `matching`.`club` (`id`)
+        ON DELETE NO ACTION
+        ON UPDATE NO ACTION)
+    ENGINE = InnoDB;
+
+    -- -----------------------------------------------------
+    -- Table `matching`.`mogakco_article`
+    -- -----------------------------------------------------
+    CREATE TABLE IF NOT EXISTS `matching`.`mogakco_article` (
+      `id` BIGINT NOT NULL AUTO_INCREMENT,
+      `member_id` BIGINT NOT NULL,
+      `title` VARCHAR(45) NOT NULL,
+      `create_date` DATETIME(6) NOT NULL,
+      `modified_date` DATETIME(6) NULL,
+      PRIMARY KEY (`id`),
+      INDEX `fk_mogakco_article_member1_idx` (`member_id` ASC),
+      CONSTRAINT `fk_mogakco_article_member1`
+        FOREIGN KEY (`member_id`)
+        REFERENCES `matching`.`member` (`id`)
+        ON DELETE NO ACTION
+        ON UPDATE NO ACTION)
+    ENGINE = InnoDB;
+
+
+    -- -----------------------------------------------------
+    -- Table `matching`.`mogakco_article_comment`
+    -- -----------------------------------------------------
+    CREATE TABLE IF NOT EXISTS `matching`.`mogakco_article_comment` (
+      `id` BIGINT NOT NULL AUTO_INCREMENT,
+      `content` VARCHAR(500) NOT NULL,
+      `create_date` DATETIME(6) NOT NULL,
+      `modified_date` DATETIME(6) NULL,
+      `depth` INT NOT NULL,
+      `parent_id` BIGINT NULL,
+      `is_modified` BIT(1) NOT NULL,
+      `is_deleted` BIT(1) NOT NULL,
+      `member_id` BIGINT NOT NULL,
+      `mogakco_article_id` BIGINT NOT NULL,
+      `reply_count` INT NULL,
+      PRIMARY KEY (`id`),
+      INDEX `fk_mogakco_article_tag_member1_idx` (`member_id` ASC),
+      INDEX `fk_mogakco_article_comment_mogakco_article1_idx` (`mogakco_article_id` ASC),
+      CONSTRAINT `fk_mogakco_article_tag_member1`
+        FOREIGN KEY (`member_id`)
+        REFERENCES `matching`.`member` (`id`)
+        ON DELETE NO ACTION
+        ON UPDATE NO ACTION,
+      CONSTRAINT `fk_mogakco_article_comment_mogakco_article1`
+        FOREIGN KEY (`mogakco_article_id`)
+        REFERENCES `matching`.`mogakco_article` (`id`)
+        ON DELETE NO ACTION
+        ON UPDATE NO ACTION)
+    ENGINE = InnoDB;
+
+
+    -- -----------------------------------------------------
+    -- Table `matching`.`mogakco_content`
+    -- -----------------------------------------------------
+    CREATE TABLE IF NOT EXISTS `matching`.`mogakco_content` (
+      `id` BIGINT NOT NULL AUTO_INCREMENT,
+      `mogakco_article_id` BIGINT NOT NULL,
+      `content` MEDIUMTEXT NOT NULL,
+      PRIMARY KEY (`id`),
+      INDEX `fk_mogakco_content_mogakco_article1_idx` (`mogakco_article_id` ASC),
+      CONSTRAINT `fk_mogakco_content_mogakco_article1`
+        FOREIGN KEY (`mogakco_article_id`)
+        REFERENCES `matching`.`mogakco_article` (`id`)
+        ON DELETE NO ACTION
+        ON UPDATE NO ACTION)
+    ENGINE = InnoDB;
+
+
+    -- -----------------------------------------------------
+    -- Table `matching`.`mogakco_article_tag`
+    -- -----------------------------------------------------
+    CREATE TABLE IF NOT EXISTS `matching`.`mogakco_article_tag` (
+      `id` BIGINT NOT NULL AUTO_INCREMENT,
+      `name` VARCHAR(45) NOT NULL,
+      `mogakco_article_id` BIGINT NOT NULL,
+      PRIMARY KEY (`id`),
+      INDEX `fk_mogakco_article_tag_mogakco_article1_idx` (`mogakco_article_id` ASC),
+      CONSTRAINT `fk_mogakco_article_tag_mogakco_article1`
+        FOREIGN KEY (`mogakco_article_id`)
+        REFERENCES `matching`.`mogakco_article` (`id`)
         ON DELETE NO ACTION
         ON UPDATE NO ACTION)
     ENGINE = InnoDB;

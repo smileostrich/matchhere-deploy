@@ -504,7 +504,7 @@ data:
     -- -----------------------------------------------------
     CREATE TABLE IF NOT EXISTS `matching`.`refresh_token` (
       `member_id` VARCHAR(255) NOT NULL,
-      `value` VARCHAR(255) NULL DEFAULT NULL,
+      `value` VARCHAR(1000) NULL DEFAULT NULL,
       PRIMARY KEY (`member_id`))
     ENGINE = InnoDB
     DEFAULT CHARACTER SET = utf8mb4
@@ -954,6 +954,8 @@ data:
       `title` VARCHAR(45) NOT NULL,
       `create_date` DATETIME(6) NOT NULL,
       `modified_date` DATETIME(6) NULL,
+      `platform` VARCHAR(45) NOT NULL,
+      `platform_address` VARCHAR(255) NOT NULL,
       PRIMARY KEY (`id`),
       INDEX `fk_mogakco_article_member1_idx` (`member_id` ASC),
       CONSTRAINT `fk_mogakco_article_member1`

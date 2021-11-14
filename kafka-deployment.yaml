@@ -57,3 +57,5 @@ spec:
           value: "1"
         - name: "KAFKA_CFG_ADVERTISED_LISTENERS"
           value: "PLAINTEXT://kafka:9092"
+        - name: "KAFKA_HEAP_OPTS"
+          value: "-Xmx256M -Xms128M"
